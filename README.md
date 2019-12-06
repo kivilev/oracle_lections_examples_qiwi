@@ -1,7 +1,7 @@
 # Примеры к лекциям по СУБД Oracle для компании Qiwi
 
-Автор: Кивилев ДС
-Telegram: @kivilev
-Email: kivilev.d@gmail.com
+> **Автор**: Кивилев Денис Сергеевич<br/>
+> **email**: kivilev.d@gooooogle.com<br/>
+> **telegram**: @kivilev<br/>
 
 Примеры разбиты по папкам соответствующих тем.
