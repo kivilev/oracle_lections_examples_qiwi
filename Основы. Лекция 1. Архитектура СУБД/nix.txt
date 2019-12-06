@@ -1,0 +1,9 @@
+--- Смотрим порты
+lsof -i | grep номер_процесса
+
+--- Бесконечный цикл
+begin
+  loop
+    commit;
+  end loop;
+end;
