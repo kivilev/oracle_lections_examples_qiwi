@@ -72,7 +72,7 @@ end;
 
 -- Заполняем таблицу из конвейерной функции
 insert into del$some_tab
-select 'pipeline', value(t), get_actual_timestamp()
+select 'pipelined', value(t), get_actual_timestamp()
   from delay_pipelined_proc() t;
 
 -- Заполняем таблицу из обычной функции

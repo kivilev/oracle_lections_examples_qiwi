@@ -5,7 +5,7 @@
 -- заголовок
 create or replace package my_pack is
 
-   c_currency_code_rub  varchar2(3 char) := 'RUB'; -- константа
+   c_currency_code_rub  constant varchar2(3 char) := 'RUB'; -- константа
   
    function is_rub(pi_currency_code varchar2) return boolean; -- какая-то функция
      
@@ -66,7 +66,8 @@ alter package my_pack compile;
 
 
 
-/*ORA-04068: existing state of packages has been discarded
+/*
+ORA-04068: existing state of packages has been discarded
 ORA-04061: existing state of package "HR.MY_PACK" has been invalidated
 ORA-04065: not executed, altered or dropped package "HR.MY_PACK"
 ORA-06508: PL/SQL: could not find program unit being called: "HR.MY_PACK"

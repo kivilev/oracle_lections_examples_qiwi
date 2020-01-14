@@ -3,7 +3,7 @@
 drop package demo_pack;
 
 create or replace package demo_pack is
-  g_var number;
+  g_var number := 0;
    
   function my_func return number;
 end;
