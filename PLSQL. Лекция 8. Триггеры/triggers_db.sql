@@ -10,8 +10,7 @@ create table session_log
   dtime        timestamp default systimestamp not null
 );
 
-alter table session_log add constraint session_log_ch
-check (action_type in ('logon','logoff'));
+alter table session_log add constraint session_log_ch check (action_type in ('logon','logoff'));
 
 --- 2. Процедура логирования
 create or replace procedure log_session(pi_action_type session_log.action_type%type) is
