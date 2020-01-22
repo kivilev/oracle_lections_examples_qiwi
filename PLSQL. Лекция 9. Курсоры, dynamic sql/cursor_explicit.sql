@@ -107,3 +107,35 @@ end;
 -- select * from employees t where t.salary = 666;
 
 
+----- Пример 5. Открытие курсора не приводит к его выполнению.
+create or replace function delay return number
+is
+begin
+  dbms_session.sleep(1); 
+  return 1;
+end;
+/
+
+
+declare
+  cursor my_cur is 
+  select level lvl
+       , delay() -- задержка на 1 сек
+    from dual connect by level <=5;
+
+  v_rec  my_cur%rowtype;
+begin
+  dbms_output.put_line('t1: ' || to_char(sysdate, 'hh24:mi:ss'));
+  open my_cur;
+  dbms_output.put_line('t2: ' || to_char(sysdate, 'hh24:mi:ss'));
+  
+  loop
+    fetch my_cur into v_rec;
+    exit when my_cur%notfound;
+    
+    dbms_output.put_line(v_rec.lvl||' - ' || to_char(sysdate, 'hh24:mi:ss')); 
+  end loop;
+  
+end;
+/
+
