@@ -6,7 +6,8 @@ create table my_tab
   id   number(10) not null,
   name varchar2(100 char)  not null 
 );
-insert into my_tab select level, level from dual connect by level <= 5;
+insert into my_tab select level, level 
+  from dual connect by level <= 5;
 
 
 ------- Пример 1. Обычный BEFORE-триггер на команду DELETE.

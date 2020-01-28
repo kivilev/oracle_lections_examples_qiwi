@@ -24,7 +24,21 @@ begin
 end;
 /
 
-------- Пример 2. Параметризованный курсор
+------- Пример 2. Проход по курсору в FOR
+declare
+  cursor cur_emps is
+    select level lvl from dual connect by level <= 5;
+begin  
+  -- проход по полученным строкам
+  for v_rec in cur_emps loop
+    dbms_output.put_line(v_rec.lvl); 
+  end loop;
+
+end;
+/
+
+
+------- Пример 3. Параметризованный курсор
 declare
   -- параметр курсора - p_num_rows
   cursor cur_emps(p_num_rows number) is
@@ -50,7 +64,7 @@ end;
 /
 
 
-------- Пример 3. Параметризованный курсор с выборкой в коллекцию
+------- Пример 4. Параметризованный курсор с выборкой в коллекцию
 declare
   -- параметр курсора - p_num_rows
   cursor cur_emps(p_num_rows number) is
@@ -77,7 +91,7 @@ begin
 end;
 /
 
------- Пример 4. Курсор с обновлением некоторых строк
+------ Пример 5. Курсор с обновлением некоторых строк
 declare
   cursor cur_emps is
     select e.employee_id, e.first_name||' '||e.last_name full_name, e.salary
@@ -107,7 +121,8 @@ end;
 -- select * from employees t where t.salary = 666;
 
 
------ Пример 5. Открытие курсора не приводит к его выполнению.
+
+----- Пример 6. Открытие курсора не приводит к его выполнению.
 create or replace function delay return number
 is
 begin
