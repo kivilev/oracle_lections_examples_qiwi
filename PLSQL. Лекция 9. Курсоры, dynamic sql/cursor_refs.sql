@@ -90,6 +90,7 @@ begin
   dbms_output.put_line('----- get_employees_by_name');   
   v_cur := employee_pack.get_employees_by_name('David');
   print(v_cur);
+  close v_cur;
 
   dbms_output.put_line('----- get_employees_by_id'); 
   v_cur := employee_pack.get_employees_by_id(100);
