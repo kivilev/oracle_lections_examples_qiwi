@@ -1,11 +1,11 @@
 -- ******************* DEMO. Полезные пакеты **********************
 
-
 create or replace procedure sleep(p_sec number) is
 begin
    dbms_session.sleep(p_sec);
 end;
-/   
+/
+
 
 -------- 1) DBMS_APPLICATION_INFO
 -- Пример с установкой версии клиента и смены действия
@@ -163,7 +163,8 @@ create or replace procedure test_main_proc is
 begin
 '||v_procs||'
 end;  
-  ';  
+  ';
+
 end;
 /
 
@@ -173,7 +174,7 @@ begin
   dbms_hprof.start_profiling(location => 'HPROFILER_DIR', filename => 'my_profiler.trc');
   -- тестируемая процедура
   test_main_proc();
-  -- выкл профилинивароние
+  -- выкл профилирование
   dbms_hprof.stop_profiling();
 end;
 /
@@ -184,9 +185,6 @@ end;
 -- plshprof my_profiler.trc
 -- cp ./my_profiler.html /opt/oracle/oradata
 -- C:\Users\d.kivilev\Qiwi\dbs\oracle18xe
-
-
---dbms_parallel_execute 
 
 -------------- 5) DBMS_UTILITY
 declare
@@ -239,8 +237,5 @@ begin
   dbms_output.put_line('CPU time: '||(dbms_utility.get_cpu_time()-t1));
 end;
 /
-
-
-
 
 
