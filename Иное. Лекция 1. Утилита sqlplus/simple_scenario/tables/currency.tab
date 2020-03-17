@@ -1,0 +1,23 @@
+-- create table
+create table currency
+(
+  currency_id number(10) not null,
+  alpha3code  char(3) not null,
+  constraint currency_pk primary key (currency_id)
+)organization index;
+
+-- add comments to the table 
+comment on table currency is 'Справочник валют кошелька';
+-- add comments to the columns 
+comment on column currency.currency_id is 'ISO 4217. Цифровой код';
+comment on column currency.alpha3code is 'ISO 4217. Буквенный код';
+
+-- create/recreate primary, unique and foreign key constraints 
+ 
+alter table currency
+  add constraint currency_code_uq unique (alpha3code);
+
+-- create/recreate check constraints 
+alter table currency
+  add constraint currency_ch
+  check (alpha3code = upper(alpha3code));
