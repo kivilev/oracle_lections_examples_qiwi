@@ -16,7 +16,7 @@ whenever sqlerror exit failure
 @@services/title.sql
 
 -- вывод системной инфы
-@@services/banner.sql &patch_num
+@@services/banner.sql
 
 -- отключение считывания символов &
 set define off
