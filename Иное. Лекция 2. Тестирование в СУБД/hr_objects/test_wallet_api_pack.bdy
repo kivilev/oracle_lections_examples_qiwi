@@ -1,4 +1,4 @@
-create or replace package body test_wallet_pack is
+create or replace package body test_wallet_api_pack is
 
   g_wallet_id wallet.wallet_id%type;
 
@@ -70,8 +70,16 @@ create or replace package body test_wallet_pack is
   --****************** процедура delete_wallet
 
   procedure delete_existing_wallet is
+    v_cnt number;
   begin
     wallet_api_pack.delete_wallet(pi_wallet_id => g_wallet_id);
+
+    -- проверяем, что действительно удалили
+    select count(*) 
+      into v_cnt
+      from wallet t where t.wallet_id = g_wallet_id;
+        
+    ut.expect(v_cnt).to_equal(0);
   end;
 
 
@@ -103,7 +111,7 @@ create or replace package body test_wallet_pack is
   --****************** вспомогательные процедуры
 
   -- создание кошелька
-  procedure create_wallet is
+  procedure create_wallet_one is
   begin
     dbms_session.set_context('clientcontext', 'force_dml', 'true');
   
@@ -126,7 +134,7 @@ create or replace package body test_wallet_pack is
   end;
 
   -- удаление кошелька
-  procedure delete_wallet is
+  procedure delete_wallet_one is
   begin
     if g_wallet_id is null
     then
@@ -155,5 +163,5 @@ create or replace package body test_wallet_pack is
     return v_wallet_id;
   end;
 
-end test_wallet_pack;
+end;
 /

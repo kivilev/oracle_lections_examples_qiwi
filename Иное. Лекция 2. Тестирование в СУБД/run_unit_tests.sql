@@ -7,7 +7,7 @@ select *
 
 -- Запуск тестов в конкретном пакете
 select *
-  from table(ut.run('test_wallet_pack'));
+  from table(ut.run('test_wallet_api_pack'));
 
 
 -- Запуск тестов в одном с выбором формата отчета

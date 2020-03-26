@@ -1,39 +1,39 @@
-create or replace package test_wallet_pack is
+create or replace package test_wallet_api_pack is
 
   -- Author  : D.KIVILEV
   -- Created : 24.03.2020 18:21:21
-  -- Purpose : Тестирование пакета wallet_pack
+  -- Purpose : Тестирование пакета wallet_pack_api
 
-  --%suite(Test wallet_pack)
+  --%suite(Test wallet_api_pack)
   --%suitepath(wallet)
 
-  ----- кейсы для процедуры create_wallet
+  ----- кейсы для процедуры create_wallet_one
 
   --%test(Создание кошелька с валидными параметрами API)
-  --%aftertest(delete_wallet)
+  --%aftertest(delete_wallet_one)
   procedure create_wallet_with_valid_params;
 
   --%test(Создание кошелька с недопустимой валютой приводит к ошибке)
-  --%aftertest(delete_wallet)
+  --%aftertest(delete_wallet_one)
   --%throws(-20100)  
   procedure create_wallet_with_wrong_currency;
 
   --%test(Создание кошелька с отрицательным балансом приводит к ошибке)
-  --%aftertest(delete_wallet)
+  --%aftertest(delete_wallet_one)
   --%throws(-20100)  
   procedure create_wallet_with_negative_balance;
 
   --%test(Создание кошелька с пустым холдом приводит к ошибке)
-  --%aftertest(delete_wallet)
+  --%aftertest(delete_wallet_one)
   --%throws(-20100)  
   procedure create_wallet_with_null_hold_balance;
 
 
-  ----- кейсы для процедуры delete_wallet
+  ----- кейсы для процедуры delete_wallet_one
 
   --%test(Удаление существующего кошелька)
-  --%beforetest(create_wallet)
-  --%aftertest(delete_wallet)
+  --%beforetest(create_wallet_one)
+  --%aftertest(delete_wallet_one)
   procedure delete_existing_wallet;
 
   --%test(Удаление несуществующего кошелька не приводит к ошибке)
@@ -52,8 +52,8 @@ create or replace package test_wallet_pack is
 
 
   ----- вспомогательные процедуры
-  procedure create_wallet;
-  procedure delete_wallet;
+  procedure create_wallet_one;
+  procedure delete_wallet_one;
 
-end test_wallet_pack;
+end;
 /
