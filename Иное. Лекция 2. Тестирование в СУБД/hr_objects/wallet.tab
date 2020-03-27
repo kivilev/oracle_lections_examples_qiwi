@@ -17,7 +17,3 @@ comment on column wallet.hold_balance
 
 alter table wallet
   add constraint wallet_pk primary key (wallet_id);
-  
-alter table wallet
-  add constraint wallet_currency_id_fk foreign key (currency_id)
-  references currency (currency_id);
